@@ -23,9 +23,22 @@ export const getAllBooksSchema = Joi.object({
 });
 
 export const createBookSchema = Joi.object({
-  title: Joi.string().min(1).max(255).required(),
-  author: Joi.string().min(1).max(255).required(),
+  title: Joi.string().max(255).required(),
+  author: Joi.string().max(255).required(),
   genre: Joi.string().min(1).max(100).optional(),
   publishedYear: Joi.number().integer().min(1000).max(new Date().getFullYear()).optional(),
   description: Joi.string().max(1000).optional(),
 });
+
+export const validate = (schema) => (req, res, next) => {
+  const { error } = schema.validate(
+    req.body || req.params || req.query,
+    { abortEarly: false, allowUnknown: true }
+  );
+
+  if (error) {
+    return res.status(400).send({ errors: error.details.map((err) => err.message) });
+  }
+
+  next();
+};

@@ -1,5 +1,6 @@
 import express from "express";
-import isLoggedIn from "../Auth/IsLoggedIn.js";
+import isLoggedIn from "../../Auth/IsLoggedIn.js";
+
 import { 
   DeleteUser, 
   GetAllUsers, 

@@ -21,7 +21,7 @@ const User = new mongoose.Schema({
         required : true,
         minlegth : 6
     },
-    posts: [{
+    books: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'
     }],

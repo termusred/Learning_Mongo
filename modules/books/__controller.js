@@ -1,7 +1,7 @@
-import Book from "./Books.js";
+import Book from "./Book.js";
 import fs from "fs";
 import path from "path";
-import Book from "./Book.js";
+
 
 export async function GetAllBooks(req, res) {
     try {
@@ -43,11 +43,8 @@ export async function GetBookById(req, res) {
 export async function CreateBook(req, res) {
     try {
         const { title, author, genre, publishedYear, description } = req.body;
-        let picture = null;
 
-        if (req.file) {
-            picture = req.file.path; 
-        }
+        const photos = req.files ? req.files.map(file => file.filename) : [];
 
         const book = new Book({
             title,
@@ -55,7 +52,7 @@ export async function CreateBook(req, res) {
             genre,
             publishedYear,
             description,
-            picture, 
+            photos
         });
 
         await book.save();

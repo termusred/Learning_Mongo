@@ -1,5 +1,5 @@
 import express from "express";
-import isLoggedIn from "../Auth/IsLoggedIn.js";
+import isLoggedIn from "../../Auth/IsLoggedIn.js";
 import { 
   DeleteBook, 
   GetAllBooks, 
@@ -22,10 +22,12 @@ const router = express.Router();
 router.get('/books', isLoggedIn, validate(getAllBooksSchema), GetAllBooks);
 router.get('/books/:bookId', isLoggedIn, validate(getBookByIdSchema), GetBookById);
 
-router.post("/books", isLoggedIn, validate(createBookSchema), CreateBook);
+router.post("/books", isLoggedIn, CreateBook);
 
 router.delete("/books", isLoggedIn, validate(deleteBookSchema), DeleteBook);
 
 router.patch("/books", isLoggedIn, validate(patchBookSchema), PatchBook);
 
 export default router;
+
+// validate(createBookSchema), 

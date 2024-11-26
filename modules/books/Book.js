@@ -23,7 +23,7 @@ const BookSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.String,
     },
     picture: {
-        type: mongoose.SchemaTypes.String,
+        type: mongoose.SchemaTypes.String, // Could be a file path or URL
     },
 }, {
     timestamps: true,
